@@ -1,24 +1,84 @@
-# README
+## user テーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| Column   | Type   | Options                                     |
+| -------- | ------ | ------------------------------------------- |
+| nickname | string | null: false                                 |
+| password | string | null: false                                 |
+| email    | string | null: false, foreign_key: true, index: true |
 
-Things you may want to cover:
+### Association
 
-* Ruby version
+- has_one  :profile, dependent: :destroy
+- has_many :addresses, dependent: :destroy
+- has_many :products
+- has_many :comments, dependent: :destroy
 
-* System dependencies
+## product テーブル
 
-* Configuration
+| Column         | Type       | Options                        |
+| -------------- | ---------- | ------------------------------ |
+| name           | string     | null: false                    |
+| introduction   | text       | null: false                    |
+| brand          | references |              foreign_key: true |
+| item_condition | string     | null: false                    |
+| image          | string     |                                |
+| delivery_fee   | string     | null: false                    |
+| delivery_area  | string     | null: false                    |
+| delivery_date  | string     | null: false                    |
+| category       | references | null: false, foreign_key: true |
+| price          | integer    | null: false                    |
 
-* Database creation
+### Association
 
-* Database initialization
+- has_many :users
+- has_many :comments, dependent: :destroy
 
-* How to run the test suite
+##  addressテーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column           | Type       | Options                        |
+| -----------------| ---------- | ------------------------------ |
+| post_code        | integer(7) | null: false                    |
+| prefecture       | string     | null: false                    |
+| city             | string     | null: false                    |
+| address1         | string     |                                |
+| address2         | string     |                                |
+| card_number      | string     | null: false                    |
+| code             | integer    | null: false                    |
+| expiration_year  | integer    | null: false                    |
+| expiration_month | integer    | null: false                    |
+| telephone        | integer    | unique: true                   |
+| user             | references | null: false, foreign_key: true |
 
-* Deployment instructions
+### Association
 
-* ...
+- belongs_to :user
+
+##  profileテーブル
+
+| Column            | Type       | Options                        |
+| ----------------- | ---------- | ------------------------------ |
+| first_name(kanji) | string     | null: false                    |
+| last_name(kanji)  | string     | null: false                    |
+| first_name(kana)  | string     | null: false                    |
+| last_name(kana)   | string     | null: false                    |
+| birthday_year     | date       | null: false                    |
+| birthday_month    | date       | null: false                    |
+| birthday_day      | date       | null: false                    |
+| user              | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+
+## comment テーブル
+
+| Column   | Type       | Options                        |
+| -------  | ---------- | ------------------------------ |
+| comment  | text       | null: false                    |
+| user     | references | null: false, foreign_key: true |
+| product  | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :product
+- belongs_to :user
