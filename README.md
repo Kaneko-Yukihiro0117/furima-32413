@@ -13,7 +13,7 @@
 
 ### Association
 
-- has_many :addresses, dependent: :destroy
+- has_one :address, dependent: :destroy
 - has_many :products
 - has_many :comments, dependent: :destroy
 
@@ -24,12 +24,11 @@
 | name              | string     | null: false |
 | introduction      | text       | null: false |
 | item_condition    | string     | null: false |
-| image             | string     |             |
 | price             | integer    | null: false |
 
 ### Association
 
-- has_one :user
+- belongs_to :user
 - has_many :comments, dependent: :destroy
 
 ##  addressテーブル
@@ -47,8 +46,9 @@
 ### Association
 
 - belongs_to :user
+- belongs_to :user_product
 
-## user_product テーブル
+## user_product テーブル　（購入履歴）
 
 | Column            | Type       | Options                        |
 | ----------------- | ---------- | ------------------------------ |
@@ -56,13 +56,12 @@
 | delivery_area_id  | integer    | null: false                    |
 | delivery_date_id  | integer    | null: false                    |
 | category_id       | integer    | null: false                    |
-| user              | references | null: false, foreign_key: true |
-| product           | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :product
+- belongs_to :address
 
 
 ## comment テーブル
