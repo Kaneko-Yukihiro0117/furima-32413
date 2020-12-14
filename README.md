@@ -14,7 +14,7 @@
 ### Association
 
 - has_many :products
-- has_many :user_products
+- has_many :user_products, dependent: :destroy
 
 ## product テーブル
 
