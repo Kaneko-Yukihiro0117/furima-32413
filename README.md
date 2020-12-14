@@ -4,7 +4,7 @@
 | ------------------ | ---------- | ------------------------------------------- |
 | nickname           | string     | null: false                                 |
 | encrypted_password | string     | null: false                                 |
-| email              | string     | null: false, unique: true, index: true 　　　|
+| email              | string     | null: false, unique: true, index: true      |
 | first_name_kanji   | string     | null: false                                 |
 | last_name_kanji    | string     | null: false                                 |
 | first_name_kana    | string     | null: false                                 |
@@ -14,7 +14,7 @@
 ### Association
 
 - has_many :products
-- has_many :user_products, dependent: :destroy
+- has_many :user_products
 
 ## product テーブル
 
