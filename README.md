@@ -44,7 +44,7 @@
 | city             | string     | null: false                    |
 | address          | string     | null: false                    |
 | build            | string     |                                |
-| telephone        | string     | null: false, unique: true      |
+| telephone        | string     | null: false                    |
 | user_product     | references | null: false, foreign_key: true |
 
 
