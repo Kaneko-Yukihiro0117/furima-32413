@@ -4,11 +4,11 @@
 | ------------------ | ---------- | ------------------------------------------- |
 | nickname           | string     | null: false                                 |
 | encrypted_password | string     | null: false                                 |
-| email              | string     | null: false, foreign_key: true, index: true |
-| first_name(kanji)  | string     | null: false                                 |
-| last_name(kanji)   | string     | null: false                                 |
-| first_name(kana)   | string     | null: false                                 |
-| last_name(kana)    | string     | null: false                                 |
+| email              | string     | null: false, unique: true, index: true 　　　|
+| first_name_kanji　 | string     | null: false                                 |
+| last_name_kanji    | string     | null: false                                 |
+| first_name_kana    | string     | null: false                                 |
+| last_name_kana     | string     | null: false                                 |
 | birthday           | date       | null: false                                 |
 
 ### Association
@@ -22,9 +22,11 @@
 | Column            | Type       | Options     |
 | ----------------- | ---------- | ----------- |
 | name              | string     | null: false |
-| introduction      | text       | null: false |
-| item_condition    | string     | null: false |
-| price             | integer    | null: false |
+| delivery_fee_id   | integer    | null: false |
+| delivery_area_id  | integer    | null: false |
+| delivery_date_id  | integer    | null: false |
+| category_id       | integer    | null: false |
+
 
 ### Association
 
@@ -41,21 +43,19 @@
 | address1         | string     | null: false                    |
 | address2         | string     | null: false                    |
 | telephone        | string     | null: false, unique: true      |
-| user             | references | null: false, foreign_key: true |
+| user-product     | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :user
 - belongs_to :user_product
 
 ## user_product テーブル　（購入履歴）
 
-| Column            | Type       | Options                        |
-| ----------------- | ---------- | ------------------------------ |
-| delivery_fee_id   | integer    | null: false                    |
-| delivery_area_id  | integer    | null: false                    |
-| delivery_date_id  | integer    | null: false                    |
-| category_id       | integer    | null: false                    |
+| Column            | Type       | Options     |
+| ----------------- | ---------- | ----------- |
+| introduction      | text       | null: false |
+| item_condition    | string     | null: false |
+| price             | integer    | null: false |
 
 ### Association
 
