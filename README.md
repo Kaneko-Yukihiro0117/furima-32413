@@ -16,22 +16,27 @@
 - has_one :address, dependent: :destroy
 - has_many :products
 - has_many :comments, dependent: :destroy
+- has_many :user_products, dependent: :destroy
 
 ## product テーブル
 
-| Column            | Type       | Options     |
-| ----------------- | ---------- | ----------- |
-| name              | string     | null: false |
-| delivery_fee_id   | integer    | null: false |
-| delivery_area_id  | integer    | null: false |
-| delivery_date_id  | integer    | null: false |
-| category_id       | integer    | null: false |
-
+| Column            | Type       | Options                        |
+| ----------------- | ---------- | ------------------------------ |
+| name              | string     | null: false                    |
+| delivery_fee_id   | integer    | null: false                    |
+| delivery_area_id  | integer    | null: false                    |
+| delivery_date_id  | integer    | null: false                    |
+| category_id       | integer    | null: false                    |
+| introduction      | text       | null: false                    |
+| item_condition    | string     | null: false                    |
+| price             | integer    | null: false                    |
+｜ user             | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - has_many :comments, dependent: :destroy
+- has_many :user_products, dependent: :destroy
 
 ##  addressテーブル
 
@@ -43,7 +48,7 @@
 | address1         | string     | null: false                    |
 | address2         | string     | null: false                    |
 | telephone        | string     | null: false, unique: true      |
-| user-product     | references | null: false, foreign_key: true |
+| user_product     | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -51,17 +56,16 @@
 
 ## user_product テーブル　（購入履歴）
 
-| Column            | Type       | Options     |
-| ----------------- | ---------- | ----------- |
-| introduction      | text       | null: false |
-| item_condition    | string     | null: false |
-| price             | integer    | null: false |
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+｜ user   | references | null: false, foreign_key: true |
+| product | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - belongs_to :product
-- belongs_to :address
+- has_one :address
 
 
 ## comment テーブル
