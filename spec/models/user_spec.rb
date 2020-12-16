@@ -8,11 +8,6 @@ describe User do
     it "全ての項目の入力が存在すれば登録できること" do
       expect(@user).to  be_valid
     end
-    it "passwordが数字と英字を含む6文字の場合、登録できること" do
-      @user.password = "1a2b3c"
-      @user.password_confirmation = "1a2b3c"
-      expect(@user).to be_valid
-    end
   end
   context '登録できない' do
     it "nicknameがない場合は登録できないこと" do
@@ -83,6 +78,12 @@ describe User do
       @user.password_confirmation = "abcdefg"
       @user.valid?
       expect(@user.errors.full_messages).to include("Password は英字と数字両方を含むパスワードを設定してください")
+    end
+    it "passwordが全角文字の入力の場合、登録できないこと" do
+      @user.password ="あいうえお"
+      @user.password_confirmation = "あいうえお"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)", "Password は英字と数字両方を含むパスワードを設定してください")
     end
     it 'first_name_kanjiが全角入力でなければ登録できないこと' do
       @user.first_name_kanji = "kana"
