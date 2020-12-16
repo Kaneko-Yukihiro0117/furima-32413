@@ -1,12 +1,20 @@
 require 'rails_helper'
 describe User do
   describe '#create' do
-    before do
+  before do
       @user = FactoryBot.build(:user)
-    end
+  end
+  context '登録できる' do
     it "全ての項目の入力が存在すれば登録できること" do
       expect(@user).to  be_valid
     end
+    it "passwordが数字と英字を含む6文字の場合、登録できること" do
+      @user.password = "1a2b3c"
+      @user.password_confirmation = "1a2b3c"
+      expect(@user).to be_valid
+    end
+  end
+  context '登録できない' do
     it "nicknameがない場合は登録できないこと" do
       @user.nickname = nil
       @user.valid?
@@ -50,36 +58,31 @@ describe User do
       expect(@user.errors.full_messages).to include("Email is invalid") 
     end
     #メールアドレスは@とドメインを含む必要がある
-    it "passwordが存在してもencrypted_passwordがない場合は登録できないこと" do
-      @user.encrypted_password = "" 
+    it "passwordが存在してもpassword_confirmationがない場合は登録できないこと" do
+      @user.password_confirmation = "" 
       # 故意に確認用のパスワードを空にしてみる
       @user.valid?
-      expect(@user.errors.full_messages).to include("Encrypted password can't be blank", "Encrypted password は英字と数字両方を含むパスワードを設定してください")
+      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
     #パスワードは確認用を含めて2回入力する
-    it "passwordが数字と英字を含む6文字の場合、登録できること" do
-      @user.password = "1a2b3c"
-      @user.encrypted_password = "1a2b3c"
-      expect(@user).to be_valid
-    end
     it "passwordが6文字以下であれば登録できないこと" do
       @user.password = "123d5"
-      @user.encrypted_password = "123d5"
+      @user.password_confirmation = "123d5"
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)", "Password は英字と数字両方を含むパスワードを設定してください", "Encrypted password は英字と数字両方を含むパスワードを設定してください")
+      expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)", "Password は英字と数字両方を含むパスワードを設定してください")
     end
     #パスワードは6文字以上
     it "passwordが数字のみの場合、登録できないこと" do
       @user.password = "1234567"
-      @user.encrypted_password = "1234567"
+      @user.password_confirmation = "1234567"
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password は英字と数字両方を含むパスワードを設定してください", "Encrypted password は英字と数字両方を含むパスワードを設定してください")
+      expect(@user.errors.full_messages).to include("Password は英字と数字両方を含むパスワードを設定してください")
     end
     it "passwordが英字のみの場合、登録できないこと" do
       @user.password = "abcdefg"
-      @user.encrypted_password = "abcdefg"
+      @user.password_confirmation = "abcdefg"
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password は英字と数字両方を含むパスワードを設定してください", "Encrypted password は英字と数字両方を含むパスワードを設定してください")
+      expect(@user.errors.full_messages).to include("Password は英字と数字両方を含むパスワードを設定してください")
     end
     it 'first_name_kanjiが全角入力でなければ登録できないこと' do
       @user.first_name_kanji = "kana"
@@ -115,5 +118,6 @@ describe User do
       expect(@user.errors.full_messages).to include("Last name kana is invalid")
     end
     #ユーザー本名のフリガナは全角で入力させる
+      end
     end
   end

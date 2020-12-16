@@ -11,7 +11,6 @@ class User < ApplicationRecord
                          uniqueness: true
     #  メールアドレスに一意性のあるバリテーションをつける、また@をを含む正しい形式で入力されている
     validates :password,              format: { with: /\A^(?=.*?[a-zA-Z])(?=.*?\d)[a-zA-Z\d]{6,20}$\z/, message: 'は英字と数字両方を含むパスワードを設定してください' }
-    validates :encrypted_password,    format: { with: /\A^(?=.*?[a-zA-Z])(?=.*?\d)[a-zA-Z\d]{6,20}$\z/, message: 'は英字と数字両方を含むパスワードを設定してください' }
      # 英字と数字の両方を含む6文字以上20文字以下
     validates :birthday
     with_options length: { maximum: 30 } do
