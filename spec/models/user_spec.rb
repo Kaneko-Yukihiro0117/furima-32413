@@ -26,6 +26,21 @@ describe User do
       @user.valid?
       expect(@user.errors.full_messages).to  include("Password can't be blank")
     end
+    it "first_name_kanjiがない場合は登録できないこと" do
+      @user.first_name_kanji = nil
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name kanji can't be blank")
+    end
+    it "last_name_kanjiがない場合は登録できないこと" do
+      @user.last_name_kanji = nil
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Last name kanji can't be blank")
+    end
+    it "first_name_kanaがない場合は登録できないこと" do
+      @user.first_name_kana = nil
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name kana can't be blank")
+    end
     it "last_name_kanaがない場合は登録できないこと" do
       @user.last_name_kana = nil
       @user.valid?
