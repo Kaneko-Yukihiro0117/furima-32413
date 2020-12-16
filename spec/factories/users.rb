@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :user do
     nickname               {Faker::Movies::HarryPotter.character}
-    password               {"0a000000"}
-    encrypted_password     {"0a000000"}
+    password               {"1a2b3cd"}
+    encrypted_password     {"1a2b3cd"}
     email                  {Faker::Internet.unique.email}
     first_name_kanji       {"山田"}
     last_name_kanji        {"花子"}
