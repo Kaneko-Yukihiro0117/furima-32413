@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::Base
-  # before_action :authenticate_user!
-  # ログイン画面に遷移
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   private
