@@ -2,12 +2,12 @@ FactoryBot.define do
   factory :product do
     name                 {"hugahuga"}
     introduction         {Faker::Lorem.sentences}
-    price                {"9999998"}
-    category_id          {"2"}
-    item_condition_id    {"2"}
-    prefecture_id        {"2"}
-    delivery_fee_id      {"2"}
-    delivery_date_id     {"2"}
+    price                {9999998}
+    category_id          {2}
+    item_condition_id    {2}
+    prefecture_id        {2}
+    delivery_fee_id      {2}
+    delivery_date_id     {2}
 
     association :user
 

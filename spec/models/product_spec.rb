@@ -63,37 +63,37 @@ RSpec.describe Product, type: :model do
         expect(@product.errors.full_messages).to include ("Price is not a number")
       end
       it 'priceが300円未満の時、保存されない' do
-        @product.price = "284"
+        @product.price = 284
         @product.valid?
         expect(@product.errors.full_messages).to include ("Price must be greater than 300")
       end
       it 'priceが10000000円以上の時、保存されない' do
-        @product.price = "100000000"
+        @product.price = 100000000
         @product.valid?
         expect(@product.errors.full_messages).to include ("Price must be less than 9999999")
       end
       it 'category_idがid:0の時、保存されない' do
-        @product.category_id = '0'
+        @product.category_id = 0
         @product.valid?
         expect(@product.errors.full_messages).to include ("Category must be other than 0")
       end
       it 'item_condition_idがid:0の時、保存されない' do
-        @product.item_condition_id = '0'
+        @product.item_condition_id = 0
         @product.valid?
         expect(@product.errors.full_messages).to include ("Item condition must be other than 0")
       end
       it 'prefecture_idがid:0の時、保存されない' do
-        @product.prefecture_id = '0'
+        @product.prefecture_id = 0
         @product.valid?
         expect(@product.errors.full_messages).to include ("Prefecture must be other than 0")
       end
       it 'delivery_fee__idがid:0の時、保存されない' do
-        @product.delivery_fee_id = '0'
+        @product.delivery_fee_id = 0
         @product.valid?
         expect(@product.errors.full_messages).to include ("Delivery fee must be other than 0")
       end
       it 'delivery_date_idがid:0の時、保存されない' do
-        @product.delivery_date_id = '0'
+        @product.delivery_date_id = 0
         @product.valid?
         expect(@product.errors.full_messages).to include ("Delivery date must be other than 0")
       end
