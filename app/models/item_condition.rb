@@ -1,4 +1,4 @@
-class ItemStatus < ActiveHash::Base
+class ItemCondition < ActiveHash::Base
   self.data = [
     { id: 0, name: 'ーー' },
     { id: 1, name: '新品、未使用' },

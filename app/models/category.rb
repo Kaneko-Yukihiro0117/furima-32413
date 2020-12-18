@@ -1,4 +1,4 @@
-class ItemCategory < ActiveHash::Base
+class Category < ActiveHash::Base
   self.data = [
     { id: 0, name: 'ーー' },
     { id: 1, name: 'メンズ' },
