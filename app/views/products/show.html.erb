@@ -8,17 +8,17 @@
     <div class='item-img-content'>
       <%= image_tag @product.image,class:"item-box-img" %>
       <%# 商品が売れている場合は、sold outを表示しましょう %>
-      L<!----<div class='sold-out'>
+      <!----<div class='sold-out'>
         <span>Sold Out!!</span>
       </div>---購入の時設定します---->
       <%# //商品が売れている場合は、sold outを表示しましょう %>
     </div>
     <div class="item-price-box">
       <span class="item-price">
-       <%= @product.price %>
+       <%= @product.price %>円
       </span>
       <span class="item-postage">
-        (送料込み)
+       <%= "＊" + @product.delivery_fee.name %>
       </span>
     </div>
     
