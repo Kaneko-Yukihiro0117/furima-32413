@@ -76,9 +76,7 @@
       <%= link_to image_tag("dl-android.png", class:"google-btn"), "#" %>
     </div>
   </div>
-  <%# /画面中央の「会員数日本一位」帯部分 %>
 
-  <%# FURIMAの特徴 %>
   <div class='feature-contents'>
     <h2 class='title'>
       FURIMAの特徴
@@ -121,20 +119,17 @@
     <% else %>
     <%= link_to '新規投稿商品', new_user_session_path, class: "subtitle" %>
     <% end %>
+
     <ul class='item-lists'>
-
-      <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
-      <li class='list'>
-        <%= link_to "#" do %>
-        <div class='item-img-content'>
+    <% if @products.length == 0 %>
+        
+        <li class='list'>
+          <%= link_to "#" do %>
+          <div class='item-img-content'>
           <%= image_tag "item-sample.png", class: "item-img" %>
-
-          <%# 商品が売れていればsold outを表示しましょう %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
-          <%# //商品が売れていればsold outを表示しましょう %>
-
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
@@ -149,12 +144,8 @@
           </div>
         </div>
         <% end %>
-      </li>
-      <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
-
-      <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
-      <%# 商品がある場合は表示されないようにしましょう %>
-      <li class='list'>
+        </li>
+        <li class='list'>
         <%= link_to '#' do %>
         <%= image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", class: "item-img" %>
         <div class='item-info'>
@@ -170,14 +161,41 @@
           </div>
         </div>
         <% end %>
-      </li>
-      <%# //商品がある場合は表示されないようにしましょう %>
-      <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
+        </li>
+       
+      <% else %>
+      <% @products.each do |product|  %>
+       <li class='list'>
+         <%= link_to '#' do %>
+          <%= image_tag product.image[0], class: "item-img" %>
+
+           <%# 商品が売れていればsold outを表示しましょう %>
+           <%# if product(後で使うのでこのまま) = nil？ %>
+          <!----<div class='sold-out'><span>Sold Out!!</span></div></div>----->
+          <%# end %>
+          <%# //商品が売れていればsold outを表示しましょう %>
+
+          <div class='item-info'>
+          <h3 class='item-name'>
+            <%= product.name %>
+          </h3>
+          <div class='item-price'>
+            <span><%= product.price %>円<br>(税込み)</span>
+            <div class='star-btn'>
+              <%= image_tag "star.png", class:"star-icon" %>
+              <span class='star-count'>0</span>
+              </div>
+            </div>
+            </div>
+            <% end %>
+        </li> 
+        <% end %>
+      <% end %>
     </ul>
   </div>
-  <%# /商品一覧 %>
+
 </div>
-<%= link_to('#', class: 'purchase-btn') do %>
+<%= link_to(new_product_path, class: 'purchase-btn') do %>
   <span class='purchase-btn-text'>出品する</span>
   <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
 <% end %>
