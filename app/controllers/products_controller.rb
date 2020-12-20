@@ -28,7 +28,6 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product = Product.find_by(id: params[:id])
     if @product.update_attributes(product_params)
       redirect_to root_path
     else
