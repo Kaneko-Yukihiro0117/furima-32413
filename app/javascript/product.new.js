@@ -8,8 +8,8 @@ function tax() {
       const taxPrice = price * 0.1;
       const saleProfit = price - taxPrice;
       
-      addTaxPrice.innerHTML = taxPrice;
-      profit.innerHTML = saleProfit; 
-  });
-}
+      addTaxPrice.innerHTML = taxPrice.toFixed(0);
+      profit.innerHTML = saleProfit.toFixed(0); 
+    });
+};
 window.addEventListener("load", tax);
