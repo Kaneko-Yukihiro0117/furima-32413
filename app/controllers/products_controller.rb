@@ -36,13 +36,13 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    if @product.destroy
+    if user_signed_in? && current_user.id == @product.user_id
+      @product.destroy
       redirect_to root_path
     else
       render :show
     end
   end
-  
 end
 
   private
