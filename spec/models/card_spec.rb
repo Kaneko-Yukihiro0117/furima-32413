@@ -46,7 +46,7 @@ RSpec.describe Card, type: :model do
       expect(@card.errors.full_messages).to include("Telephone can't be blank")
     end
     it '電話番号が12桁以上の時は登録できない' do
-      @card.telephone = 123_123_123_123
+      @card.telephone = "123123123123"
       @card.valid?
       expect(@card.errors.full_messages).to include('Telephone is invalid')
     end
