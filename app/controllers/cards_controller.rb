@@ -9,9 +9,6 @@ class CardsController < ApplicationController
 
   def create
     @card = Card.new(card_params)
-
-    binding.pry
-
     if @card.valid?
       pay_product
       @card.save
