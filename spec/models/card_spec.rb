@@ -2,10 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Card, type: :model do
   before do
-    user = FactoryBot.build(:user)
-    user.save
-    product = FactoryBot.build(:product)
-    product.save
+    user = FactoryBot.create(:user)
+    product = FactoryBot.create(:product)
     @card = FactoryBot.build(:card, user_id: user.id, product_id: product.id)
   end
 
@@ -33,6 +31,11 @@ RSpec.describe Card, type: :model do
       @card.prefecture_id = ''
       @card.valid?
       expect(@card.errors.full_messages).to include("Prefecture can't be blank")
+    end
+    it '都道府県のidが0の時は登録できない' do
+      @card.prefecture_id = 0
+      @card.valid?
+      expect(@card.errors.full_messages).to include("Prefecture must be other than 0")
     end
     it '市町村が空の時は登録できない' do
       @card.city = ''

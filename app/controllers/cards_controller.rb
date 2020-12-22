@@ -3,8 +3,8 @@ class CardsController < ApplicationController
   before_action :set_product, only: [:index, :create]
 
   def index
-    @card = Card.new
     redirect_to root_path if current_user.id == @product.user_id || @product.order.present?
+    @card = Card.new
   end
 
   def create
