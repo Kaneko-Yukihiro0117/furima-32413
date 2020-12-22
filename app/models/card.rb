@@ -6,11 +6,11 @@ class Card
     validates :user_id
     validates :product_id
     validates :token
-    validates :post_code, format: { with: /\A\d{3}-\d{4}\z/ }
-    validates :prefecture_id
+    validates :post_code,         format: { with: /\A\d{3}-\d{4}\z/ }
+    validates :prefecture_id,     numericality: { other_than: 0 }
     validates :city
     validates :address
-    validates :telephone, format: { with: /\A\d{10,11}\z/ }
+    validates :telephone,         format: { with: /\A\d{10,11}\z/ }
   end
 
   def save

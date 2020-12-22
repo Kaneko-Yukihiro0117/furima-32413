@@ -2,7 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Card, type: :model do
   before do
-    @card = FactoryBot.build(:card)
+    user = FactoryBot.build(:user)
+    user.save
+    product = FactoryBot.build(:product)
+    product.save
+    @card = FactoryBot.build(:card, user_id: user.id, product_id: product.id)
   end
 
   context '登録できる時' do

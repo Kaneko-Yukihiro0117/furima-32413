@@ -7,7 +7,7 @@ FactoryBot.define do
     build          { 'レオパレス201号' }
     telephone      { '09012345678' }
     token          { 'tok_01abcdefghijklmnopqrstuvwxyz' }
-    user_id        { 1 }
-    product_id     { 1 }
+
+    association :user, :product
   end
 end
