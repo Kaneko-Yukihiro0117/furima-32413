@@ -173,12 +173,16 @@
       <% @products.each do |product|  %>
        <li class='list'>
          <%= link_to product_path(product.id) do %>
+            <div class='item-img-content'>
           <%= image_tag product.image, class: "item-img" %>
 
            <%# 商品が売れていればsold outを表示しましょう %>
-           <%# if product(後で使うのでこのまま) = nil？ %>
-          <!----<div class='sold-out'><span>Sold Out!!</span></div></div>----->
-          <%# end %>
+           <% if product.order != nil %>
+            <div class='sold-out'>
+              <span>Sold Out!!</span>
+              </div>
+            </div>
+          <% end %>
           <%# //商品が売れていればsold outを表示しましょう %>
 
           <div class='item-info'>
