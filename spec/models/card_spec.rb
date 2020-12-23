@@ -35,7 +35,7 @@ RSpec.describe Card, type: :model do
     it '都道府県のidが0の時は登録できない' do
       @card.prefecture_id = 0
       @card.valid?
-      expect(@card.errors.full_messages).to include("Prefecture must be other than 0")
+      expect(@card.errors.full_messages).to include('Prefecture must be other than 0')
     end
     it '市町村が空の時は登録できない' do
       @card.city = ''
@@ -53,7 +53,7 @@ RSpec.describe Card, type: :model do
       expect(@card.errors.full_messages).to include("Telephone can't be blank")
     end
     it '電話番号が12桁以上の時は登録できない' do
-      @card.telephone = "123123123123"
+      @card.telephone = '123123123123'
       @card.valid?
       expect(@card.errors.full_messages).to include('Telephone is invalid')
     end
