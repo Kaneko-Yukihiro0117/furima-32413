@@ -12,7 +12,7 @@ class Product < ApplicationRecord
   with_options presence: true do
     validates :name, length: { maximum: 40 }
     validates :introduction
-    validates :image, length: { minimum: 1 }
+    validates :image, length: { minimum: 1 }, unless: :was_attached?
 
     with_options numericality: { other_than: 0 } do
       validates :category_id
