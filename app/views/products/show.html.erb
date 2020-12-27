@@ -67,21 +67,24 @@
       </tbody>
     </table>
     <div class="option">
-      <div class="favorite-btn">
-        <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
-        <span>お気に入り 0</span>
-      </div>
       <div class="report-btn">
         <%= image_tag "flag.png" ,class:"report-flag-icon" ,width:"20",height:"20"%>
-        <span>不適切な商品の通報</span>
+        <span>不適切な商品であった場合、ご連絡ください。</span>
       </div>
     </div>
   </div>
  
-  <div class="comment-box">
-    <form>
-      <textarea class="comment-text"></textarea>
-      <p class="comment-warn">
+<div class="comment-box">◇連絡事項◇
+<% if user_signed_in? %>
+    <% if current_user.id == @product.user_id && @product.order.blank? %>
+      <%= form_with(model: [@product, @comment], local: true) do |f| %>
+
+      <div class = 'form-group'>
+       <%= f.text_area :text, class: 'form-control', id:'text' %>
+      </div>
+        <p class="comment-warn">
+        こちらに連絡事項があればお書きください。
+        <br>
         相手のことを考え丁寧なコメントを心がけましょう。
         <br>
         不快な言葉遣いなどは利用制限や退会処分となることがあります。
@@ -90,18 +93,16 @@
         <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
         <span>コメントする<span>
       </button>
-    </form>
-  </div>
-  <div class="links">
-    <a href="#" class="change-item-btn">
-      ＜ 前の商品
-    </a>
-    <a href="#" class="change-item-btn">
-      後ろの商品 ＞
-    </a>
-  </div>
-
-  <a href=“#” class=‘another-item’><%= @product.category.name %>をもっと見る</a>
+        <% end %>
+      <% end %>
+    <% end %>
+        <% if @comments.length == 0 %>
+        <p><%= "特に連絡事項は有りません" %></p> 
+    <% else %>
+        <% @comments.each do |comment| %>
+        <p><%= comment.text %></p>
+        <% end %>
+   <% end %>
 </div>
-
+    
 <%= render "shared/footer" %>

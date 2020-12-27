@@ -2,9 +2,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :comments
   has_many :products
   has_many :orders
-
+    
   with_options presence: true do
     validates :nickname, length: { minimum: 3 }
     validates :email,    format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
