@@ -6,6 +6,7 @@ class Product < ApplicationRecord
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :delivery_date
   has_one_attached :image
+  has_many :comments
   belongs_to :user
   has_one :order
 

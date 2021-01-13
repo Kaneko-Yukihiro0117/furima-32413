@@ -21,6 +21,10 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new # 新規コメント用
+    @product = Product.find(params[:id])
+    @comments = @product.comments
+    # コメント表示用投稿に関連づくコメントの取得
   end
 
   def edit
