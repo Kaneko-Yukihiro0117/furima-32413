@@ -9,7 +9,7 @@ class Product < ApplicationRecord
   has_many :comments
   belongs_to :user
   has_one :order
-  
+
   with_options presence: true do
     validates :name, length: { maximum: 40 }
     validates :introduction

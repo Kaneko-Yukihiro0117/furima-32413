@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_many :comments
   has_many :products
   has_many :orders
-    
+
   with_options presence: true do
     validates :nickname, length: { minimum: 3 }
     validates :email,    format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
