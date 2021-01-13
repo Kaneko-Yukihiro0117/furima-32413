@@ -4,6 +4,6 @@
     "sources": [
         "index.scss"
     ],
-    "names": [],
+    // "names": [],
     "file": "index.css"
 }

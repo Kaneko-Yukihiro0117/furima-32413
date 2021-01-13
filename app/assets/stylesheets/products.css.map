@@ -4,6 +4,6 @@
     "sources": [
         "products.scss"
     ],
-    "names": [],
+    // "names": [],
     "file": "products.css"
 }

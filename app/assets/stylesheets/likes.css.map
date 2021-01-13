@@ -4,6 +4,6 @@
     "sources": [
         "likes.scss"
     ],
-    "names": [],
+    // "names": [],
     "file": "likes.css"
 }

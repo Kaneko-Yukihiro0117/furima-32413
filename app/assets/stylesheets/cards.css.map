@@ -4,6 +4,6 @@
     "sources": [
         "cards.scss"
     ],
-    "names": [],
+    // "names": [],
     "file": "cards.css"
 }

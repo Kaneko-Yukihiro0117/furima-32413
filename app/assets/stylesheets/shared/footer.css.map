@@ -4,6 +4,6 @@
     "sources": [
         "footer.scss"
     ],
-    "names": [],
+    // "names": [],
     "file": "footer.css"
 }

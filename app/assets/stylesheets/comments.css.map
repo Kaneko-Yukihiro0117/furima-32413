@@ -4,6 +4,6 @@
     "sources": [
         "comments.scss"
     ],
-    "names": [],
+    // "names": [],
     "file": "comments.css"
 }
